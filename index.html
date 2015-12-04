@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Marionette JS 101</title>
+    <meta name="description" content="An introduction to testing Firefox OS with Marionette JS">
+    <meta name="author" content="Michael Henretty">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+    .reveal .slides section img {
+      max-height: 130px;
+      margin: 0;
+      background: none;
+      border: none;
+      box-shadow: unset;
+      border-radius: 10px;
+    }
+    .reveal .slides section p {
+      margin: 5px 0;
+    }
+    .reveal .slides h1,
+    .reveal .slides h2,
+    .reveal .slides h3,
+    .reveal .slides h4 {
+      text-transform: unset;
+    }
+    .reveal .slides li {
+      font-size: 32px;
+    }
+    .reveal .slides a {
+      font-size: 35px;
+      animation: blinker 5s linear infinite;
+    }
+    .reveal .slides section.underlay {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 28px;
+    }
+    .reveal .slides section > ul {
+      list-style: none;
+    }
+    .reveal .slides ul ul {
+      list-style: inside;
+    }
+    .blink_me {
+    }
+
+    @keyframes blinker {
+        50% { color: #FF4E00; }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h2>Follow along here:<h2>
+          <img style="max-height: 300px" src="img/qr.jpg" />
+          <p><a style="font-size: 46px" href="http://j.mp/marionette-js-101">j.mp/marionette-js-101</a></p>
+        </section>
+
+        <section class="underlay" data-transition="fade" data-background="img/bg.png">
+          <h1>Hallo ☺</h1>
+          <img src="img/me.jpg" />
+          <p>My name is Michael Henretty</p>
+          <p>Engineer for Firefox OS (not public speaker)</p>
+          <a href="https://twitter.com/mikehenrty">twitter.com/mikehenrty</a><br />
+          <a href="https://github.com/mikehenrty">github.com/mikehenrty</a><br />
+          <a href="mailto:mikey@mozilla.com">mikey@mozilla.com</a>
+        </section>
+
+      </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'fade',
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
