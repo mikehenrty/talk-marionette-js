@@ -78,13 +78,89 @@
         </section>
 
         <section class="underlay" data-transition="fade" data-background="img/bg.png">
-          <h1>Hallo ☺</h1>
+          <h1>Who are we?</h1>
           <img src="img/me.jpg" />
-          <p>My name is Michael Henretty</p>
-          <p>Engineer for Firefox OS (not public speaker)</p>
-          <a href="https://twitter.com/mikehenrty">twitter.com/mikehenrty</a><br />
-          <a href="https://github.com/mikehenrty">github.com/mikehenrty</a><br />
-          <a href="mailto:mikey@mozilla.com">mikey@mozilla.com</a>
+          <p>Michael Henretty, Gareth Aye, Ghislain Lacroix</p>
+          <p>Engineers for Firefox OS</p>
+          <p>Firefox OS Testing Gurus (them, not me)</p>
+        </section>
+
+        <section>
+          <h2>Who is this for?</h2>
+          <ul>
+            <li>People who know a little programming (preferably JS)</li>
+            <li>People who know automated testing (preferably mocha)<li>
+            <li>People who understand integration testing</li>
+            <li>People who want to know about Marionette JS</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Whare are Marionette JS tests?</h2>
+          <ul>
+            <li>Tests for user interactions (tapping, swiping)</li>
+            <li>Can test backed APIs, but those are better for unit tests<li>
+            <li>Mostly runs on mulet, but also runs on device</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>What are Marionette JS tests not?</h2>
+          <ul>
+            <li>Not for testing ugli-ness</li>
+            <li>Not for testing functions</li>
+            <li>Not for testing code modules</li>
+            <li>Not bulletproof, racy</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>$ make test-integration</h2>
+          <ul>
+            <li>downloads latest mulet (mozilla-download)</li>
+            <li>creates configurable profile (profile builder)</li>
+            <li>runs mulet with configured profile</li>
+            <li>runs a client process that connects to Marionette in mulet</li>
+            <li>client runs mocha tests using Marionette commands</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The Marionette JS API</h2>
+          <ul>
+            <li>Marionette Client</li>
+            <li>Marionette Element</li>
+            <li>Marionette Actions</li>
+            <li>Marionette Helper</li>
+            <li>Marionette Apps &amp; Class loader</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Marionette Client</h2>
+          <pre><code>
+// Fetch DOM from current app
+client.findElement('#my-id');
+
+// Send JS to mulet to execute
+client.executeScript(function(){
+// do stuff!
+});
+
+// Wait for something to happen
+client.waitFor(function() {
+  return somethingHappend;
+});
+
+// Takes screenshot, automatically called on test timeout
+client.screenshot();
+          </code></pre>
+        </section>
+        <section>
+          <h2>Marionette Element</h2>
+          <pre><code>
+var element = client.findElement('#some-element");
+          </code></pre>
         </section>
 
       </div>
