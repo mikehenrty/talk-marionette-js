@@ -62,9 +62,10 @@
     .reveal .slides ul ul {
       list-style: inside;
     }
-    .blink_me {
+    .reveal .slides section pre code {
+      border-radius: 6px;
+      padding: 7px 4px;
     }
-
     @keyframes blinker {
         50% { color: #00CAF2; }
     }
@@ -206,7 +207,7 @@ action.release.perform();
 
         <section>
           <h2>Marionette Helper</h2>
-          <pre><code>
+          <pre><code data-trim="true">
 // Waits on an element to come onscreen.
 client.helper.waitForElement('#my-element');
 
@@ -220,7 +221,7 @@ client.helper.fillInputField('input.some-class', 'Michael');
 
         <section>
           <h2>Marionette Apps</h2>
-          <pre><code>
+          <pre><code data-trim="true">
 const EMAIL_ORIGIN = 'app://email.gaiamobile.org';
 
 // Manipulate app contexts.
@@ -233,7 +234,7 @@ client.apps.close(EMAIL_ORIGIN);
 
         <section>
           <h2>Marionette Loader</h2>
-          <pre><code>
+          <pre><code data-trim="true">
 // Load class libraries.
 var system = client.loader.getAppClass('system');
 var email = client.loader.getAppClass('email');
