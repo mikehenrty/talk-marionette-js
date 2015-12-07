@@ -56,9 +56,6 @@
       background-color: rgba(0, 0, 0, 0.8);
       border-radius: 28px;
     }
-    .reveal .slides section > ul {
-      list-style: none;
-    }
     .reveal .slides ul ul {
       list-style: inside;
     }
@@ -92,19 +89,20 @@
         <section>
           <h2>Who is this for?</h2>
           <ul>
-            <li>People who know a little programming (preferably JS)</li>
-            <li>People who know automated testing (preferably mocha)<li>
-            <li>People who understand integration testing</li>
-            <li>People who want to know about Marionette JS</li>
+            <li>People who know a little programming</li>
+            <li>People who know automated testing</li>
+            <li>People who understand integration tests</li>
+            <li>People who want to learn Marionette JS</li>
           </ul>
         </section>
 
         <section>
           <h2>Whare are Marionette JS tests?</h2>
           <ul>
-            <li>Tests for user interactions (tapping, swiping)</li>
-            <li>Can test backed APIs, but those are better for unit tests<li>
-            <li>Mostly runs on mulet, but also runs on device</li>
+            <li>Tests for user interactions</li>
+            <li>Can test backed APIs</li>
+            <li>Mostly runs on Mulet</li>
+            <li>But also runs device</li>
           </ul>
         </section>
 
@@ -121,11 +119,13 @@
         <section>
           <h2>$ make test-integration</h2>
           <ol>
-            <li>downloads latest mulet (mozilla-download)</li>
-            <li>creates configurable profile (profile builder)</li>
-            <li>runs mulet with configured profile</li>
-            <li>runs a client process that connects to Marionette in mulet</li>
-            <li>client runs mocha tests using Marionette commands</li>
+            <li>downloads latest Mulet</li>
+            <li>creates configurable profile</li>
+            <li>runs Mulet with this profile</li>
+            <li>runs client in a local process</li>
+            <li>connects to Marionette in Mulet</li>
+            <li>sends commands from client to Mulet</li>
+            <li>uses mocha to setup and run tests</li>
           </ol>
         </section>
 
@@ -147,7 +147,7 @@
 // Fetch DOM from current app.
 client.findElement('#my-id');
 
-// Send JS to mulet to execute.
+// Send JS to Mulet to execute.
 client.executeScript(function(){
 // do stuff!
 });
@@ -278,7 +278,7 @@ marionette('Test file description', function() {
             <li>Local env much faster than automation</li>
             <li>Passes once, might still be intermittent</li>
             <li>No need to rebuild profile each time</li>
-            <li>VERBOS=1 to see mulet logs</li>
+            <li>VERBOS=1 to see Mulet logs</li>
             <li>Put common actions into libraries</li>
           </ul>
         </section>
