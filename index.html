@@ -116,13 +116,13 @@
 
         <section>
           <h2>$ make test-integration</h2>
-          <ul>
+          <ol>
             <li>downloads latest mulet (mozilla-download)</li>
             <li>creates configurable profile (profile builder)</li>
             <li>runs mulet with configured profile</li>
             <li>runs a client process that connects to Marionette in mulet</li>
             <li>client runs mocha tests using Marionette commands</li>
-          </ul>
+          </ol>
         </section>
 
         <section>
@@ -132,34 +132,112 @@
             <li>Marionette Element</li>
             <li>Marionette Actions</li>
             <li>Marionette Helper</li>
-            <li>Marionette Apps &amp; Class loader</li>
+            <li>Marionette Apps</li>
+            <li>Class loader</li>
           </ul>
         </section>
 
         <section>
           <h2>Marionette Client</h2>
-          <pre><code>
-// Fetch DOM from current app
+          <pre><code data-trim="true">
+// Fetch DOM from current app.
 client.findElement('#my-id');
 
-// Send JS to mulet to execute
+// Send JS to mulet to execute.
 client.executeScript(function(){
 // do stuff!
 });
 
-// Wait for something to happen
+// Wait for something to happen.
 client.waitFor(function() {
-  return somethingHappend;
+  return true || false; // true is finished, false keeps going
 });
 
-// Takes screenshot, automatically called on test timeout
+// Takes screenshot, automatically called on test timeout.
 client.screenshot();
           </code></pre>
         </section>
         <section>
           <h2>Marionette Element</h2>
-          <pre><code>
+          <pre><code data-trim="true">
+// Grab remote DOM element
 var element = client.findElement('#some-element");
+
+// Get element box information.
+var rect = element.rect();
+console.log(rect.x, rect.y, rect.width, rect.height);
+
+// Tap it!
+element.tap();
+
+assert(element.displayed(), 'element should be on screen');
+
+// Run remote script on element.
+element.scriptWith(function (el) {
+  el.remove();
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Marionette Actions</h2>
+          <pre><code data-trim="true">
+// Create our actions helper.
+var Actions = require('marionette-client').Actions;
+var actions = Actions(client);
+
+// Common actions.
+actions.longPress(element, 3).perform();
+actions.flick(element, 0, 0, 0, elementHeight).perform();
+
+// Complex action.
+var action = actions.press(element);
+if (client.findElement('body').getAttribute('dir') === 'RTL') {
+  action.moveByOffset(-100, 0);
+} else {
+  action.moveByOffset(100, 0);
+}
+action.release.perform();
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Marionette Helper</h2>
+          <pre><code>
+// Waits on an element to come onscreen.
+client.helper.waitForElement('#my-element');
+
+// Waits on an element to not be onscreen.
+client.helper.waitForElementToDisappear('#my-element');
+
+// Focuses input, fills input with text.
+client.helper.fillInputField('input.some-class', 'Michael');
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Marionette Apps</h2>
+          <pre><code>
+const EMAIL_ORIGIN = 'app://email.gaiamobile.org';
+
+// Manipulate app contexts.
+client.apps.lauch(EMAIL_ORIGIN);
+client.apps.switchToApp(EMAIL_ORIGIN);
+client.findElement('#send-button').tap();
+client.apps.close(EMAIL_ORIGIN);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Marionette Apps &amp; Class loader</h2>
+          <pre><code>
+// Leverage system library utility functions.
+var system = client.loader.getAppClass('system');
+var email = client.loader.getAppClass('email');
+email.tapCompose();
+var sendButton = email.sendButton; // waits for send button.
+system.turnScreenOff();
+client.waitForElementToDissapear(sendButton);
           </code></pre>
         </section>
 
