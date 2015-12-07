@@ -24,6 +24,11 @@
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
     <style>
+    body {
+      background-image: url('img/bg.png');
+      background-position: center center;
+      background-size: auto 100%;
+    }
     .reveal .slides section img {
       max-height: 130px;
       margin: 0;
@@ -53,7 +58,7 @@
       transform-style: unset;
     }
     .reveal .slides section.underlay {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.85);
       border-radius: 28px;
     }
     .reveal .slides ul ul {
@@ -62,6 +67,7 @@
     .reveal .slides section pre code {
       border-radius: 6px;
       padding: 7px 4px;
+      background-color: black;
     }
     @keyframes blinker {
         50% { color: #00CAF2; }
@@ -72,13 +78,13 @@
     <div class="reveal">
       <div class="slides">
 
-        <section>
+        <section class="underlay">
           <h2>Follow along here:<h2>
           <img style="max-height: 300px" src="img/qr.jpg" />
           <p><a style="font-size: 46px" href="http://j.mp/marionette-js-101">j.mp/marionette-js-101</a></p>
         </section>
 
-        <section class="underlay" data-transition="fade" data-background="img/bg.png">
+        <section class="underlay">
           <h1>Who are we?</h1>
           <img src="img/me.jpg" />
           <p>Michael Henretty, Gareth Aye, Ghislain Lacroix</p>
@@ -86,7 +92,7 @@
           <p>Firefox OS Testing Gurus (them, not me)</p>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>Who is this for?</h2>
           <ul>
             <li>People who know a little programming</li>
@@ -96,7 +102,7 @@
           </ul>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>Whare are Marionette JS tests?</h2>
           <ul>
             <li>Tests for user interactions</li>
@@ -106,7 +112,7 @@
           </ul>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>What are Marionette JS tests not?</h2>
           <ul>
             <li>Not for testing ugli-ness</li>
@@ -116,7 +122,7 @@
           </ul>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>$ make test-integration</h2>
           <ol>
             <li>downloads latest Mulet</li>
@@ -129,7 +135,7 @@
           </ol>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>The Marionette JS API</h2>
           <ul>
             <li>Marionette Client</li>
@@ -161,6 +167,7 @@ client.waitFor(function() {
 client.screenshot();
           </code></pre>
         </section>
+
         <section>
           <h2>Marionette Element</h2>
           <pre><code data-trim="true">
@@ -271,7 +278,7 @@ marionette('Test file description', function() {
           </code></pre>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>Tips &amp; Tricks</h2>
           <ul>
             <li>Everything must wait!</li>
@@ -283,7 +290,7 @@ marionette('Test file description', function() {
           </ul>
         </section>
 
-        <section>
+        <section class="underlay">
           <h2>Useful Links</h2>
           <ul>
             <li>This talk: <a href="http://j.mp/marionette-js-101">j.mp/marionette-js-101</a></li>
@@ -312,8 +319,7 @@ marionette('Test file description', function() {
         progress: true,
         history: true,
         center: true,
-        transition: 'fade', // none/fade/slide/convex/concave/zoom
-        backgroundTransition: 'fade',
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
         // Optional reveal.js plugins
         dependencies: [
           { src: 'lib/js/line-numbers.js' },
