@@ -263,6 +263,93 @@ client.waitForElementToDissapear(sendButton);
           </code></pre>
         </section>
 
+        <section class="underlay">
+          <h2>Patterns</h2>
+          <ul>
+            <li>The problem</li>
+            <ul>
+              <li>Writting MJS is not an easy task</li>
+              <li>So is reading</li>
+            </ul>
+          </ul>
+          <pre><code data-trim="true">
+  marionette('', function() {
+    var client = marionette.client();
+
+    suite('new message', function() {
+
+      test('is created', function() {
+        var newButton = client.findElement('#threads-composer-link');
+        newButton.tap();
+
+        panel = client.helper.waitForElement('.panel-ConversationView');
+        client.waitFor(function() {
+          return panel.rect.x === 0;
+        });
+
+        input = client.helper.waitForElement('#messages-to-field [contenteditable=true]:last-child');
+        input.tap();
+        input.sendKeys('test user');
+        input.sendKeys(KEYS.ENTER);
+
+        input2 = client.helper.waitForElement('#messages-input');
+        input2.tap();
+        input2.sendKeys('test message');
+
+        sendButton = client.helper.waitForElement('#messages-send-button');
+        sendButton.tap();
+
+        message = client.helper.waitForElement('.message')[0];
+        assert.equal(message.text(), 'test message');
+      }) /* ... */ });
+  });
+          </code></pre>
+        </section>
+
+        <section class="underlay">
+          <h2>Patterns</h2>
+          One solution
+          <pre><code data-trim="true">
+  marionette('', function() {
+    var client = marionette.client();
+
+    suite('new message', function() {
+
+      test('is created', function() {
+        var newMessage = message.goToNewMessage();
+        newMessage.addNewRecipient('test user');
+        newMessage.typeMessage('test message');
+        newMessage.send();
+
+        assert.equal(newMessage.messages[0], 'test message');
+      }) /* ... */ });
+  });
+          </code></pre>
+        </section>
+
+        <section class="underlay">
+          <h2>The Page Object pattern</h2>
+          <img style="max-height: 400px;" src="img/page_object.png" /><br>
+          Standard pattern in the industry (Selenium/WebDriver)
+          <ul>
+            <li>A page class abstracts elements a user can see and interact with (text, buttons)</li>
+            <li>Tests don't use Marionette's API directly</li>
+            <li>Pages instanciates the next page (eg: SMS main page instanciates the new message page)</li>
+          </ul>
+        </section>
+
+        <section class="underlay">
+          <h2>Going further</h2>
+          <img style="max-height: 400px;" src="img/view_accessors.png" />
+          <ul>
+            <li>A page gets split into 2: accessors and view</li>
+            <li>Accessors are in charge of creating HTML Elements (including waiting on them)</li>
+            <li>Views are meant to use HTML Elements and instanciate the next views</li>
+            <li>Views represent end-user's intent instead of mandatory actions (eg: "I want create a new message" instead of "I tap on the new message button")</li>
+            <li>=> Tests are lists of intents and verifications</li>
+          </ul>
+        </section>
+
         <section>
           <h2>Anatomy of a Test</h2>
           <pre><code data-trim="true">
