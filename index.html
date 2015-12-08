@@ -263,6 +263,58 @@ client.waitForElementToDissapear(sendButton);
           </code></pre>
         </section>
 
+        <section>
+          <h2>Anatomy of a Test</h2>
+          <pre><code data-trim="true">
+var assert = require('assert');
+
+marionette('Test file description', function() {
+  var client = marionette.client();
+  var system;
+
+  suite('description of test suite', function() {
+    setup(function() {
+      system = client.getAppClass('system');
+      system.waitForFullyLoaded();
+    });
+
+    test('test interaction', function() {
+      assert(system.statusbar, 'statusbar should be visible');
+    }) /* ... */ });
+});
+          </code></pre>
+        </section>
+
+        <section class="underlay">
+          <h2>Tips &amp; Tricks</h2>
+          <img style="max-height: 190px; position: relative; bottom: 20px" src="img/fu.png" />
+          <ul>
+            <li>Everything must wait!</li>
+            <li>Local env much faster than automation</li>
+            <li>Passes once, might still be intermittent</li>
+            <li>No need to rebuild profile each time</li>
+            <li>VERBOS=1 to see Mulet logs</li>
+            <li>Put common actions into libraries</li>
+          </ul>
+        </section>
+
+        <section class="underlay">
+          <h2>Useful Links</h2>
+          <ul>
+            <li>This talk: <a href="http://j.mp/marionette-js-101">j.mp/marionette-js-101</a></li>
+            <li>Docs: <a href="http://mozilla-b2g.github.io/marionette-js-client/api-docs/">mozilla-b2g.github.io/marionette-js-client/api-docs/</a>
+            <li>Getting Started: <a href="https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Automated_testing/Gaia_integration_tests">mzl.la/1NeeUsG</a></li>
+          </ul>
+        </section>
+
+        <section data-background="img/yay.gif">
+          <h1>That's all I have to say</h1>
+          <h2>Questions?</h2>
+          <a href="https://twitter.com/mikehenrty">twitter.com/mikehenrty</a><br />
+          <a href="https://github.com/mikehenrty">github.com/mikehenrty</a><br />
+          <a href="mailto:mikey@mozilla.com">mikey@mozilla.com</a>
+        </section>
+
         <section class="underlay">
           <h2>Patterns</h2>
           <ul>
@@ -350,57 +402,6 @@ client.waitForElementToDissapear(sendButton);
           </ul>
         </section>
 
-        <section>
-          <h2>Anatomy of a Test</h2>
-          <pre><code data-trim="true">
-var assert = require('assert');
-
-marionette('Test file description', function() {
-  var client = marionette.client();
-  var system;
-
-  suite('description of test suite', function() {
-    setup(function() {
-      system = client.getAppClass('system');
-      system.waitForFullyLoaded();
-    });
-
-    test('test interaction', function() {
-      assert(system.statusbar, 'statusbar should be visible');
-    }) /* ... */ });
-});
-          </code></pre>
-        </section>
-
-        <section class="underlay">
-          <h2>Tips &amp; Tricks</h2>
-          <img style="max-height: 190px; position: relative; bottom: 20px" src="img/fu.png" />
-          <ul>
-            <li>Everything must wait!</li>
-            <li>Local env much faster than automation</li>
-            <li>Passes once, might still be intermittent</li>
-            <li>No need to rebuild profile each time</li>
-            <li>VERBOS=1 to see Mulet logs</li>
-            <li>Put common actions into libraries</li>
-          </ul>
-        </section>
-
-        <section class="underlay">
-          <h2>Useful Links</h2>
-          <ul>
-            <li>This talk: <a href="http://j.mp/marionette-js-101">j.mp/marionette-js-101</a></li>
-            <li>Docs: <a href="http://mozilla-b2g.github.io/marionette-js-client/api-docs/">mozilla-b2g.github.io/marionette-js-client/api-docs/</a>
-            <li>Getting Started: <a href="https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Automated_testing/Gaia_integration_tests">mzl.la/1NeeUsG</a></li>
-          </ul>
-        </section>
-
-        <section data-background="img/yay.gif">
-          <h1>That's all I have to say</h1>
-          <h2>Questions?</h2>
-          <a href="https://twitter.com/mikehenrty">twitter.com/mikehenrty</a><br />
-          <a href="https://github.com/mikehenrty">github.com/mikehenrty</a><br />
-          <a href="mailto:mikey@mozilla.com">mikey@mozilla.com</a>
-        </section>
 
       </div>
     </div>
